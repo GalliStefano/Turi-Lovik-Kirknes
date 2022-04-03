@@ -1,0 +1,57 @@
+$TenorSans: 'Tenor Sans', Helvetica, Arial, sans-serif;
+$Poppins: 'Poppins', Helvetica, Arial, sans-serif;
+$SB: 'SanBenedetto';
+
+@mixin font($weight, $min, $max, $font) {
+	font-weight: #{$weight};
+	font-size: calc(#{$min}px + (#{$max} - #{$min}) * (100vw / 1920));
+	line-height: calc(#{$min}px + (#{$max} - #{$min}) * (100vw / 1920));
+	font-family: #{$font};
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $weight, $min-font-size, $max-font-size, $font) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+      font-size: $min-font-size;
+			font-weight: #{$weight};
+			font-family: #{$font};
+			line-height: 1.1em;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+  }
+}
+
+
+$white: #FFF;
+$white05: rgba(255, 255, 255, 0.5);
+$white00: rgba(255, 255, 255, 0);
+$black05: rgba(0, 0, 0, 0.3);
+
+$black: #000;
+$linear-black: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+$linear-black07:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+
+$dark-blue: #091E49;
+$blue: #123274;
+$light-blue: #A1DAF8;
+$pink: #E1A7C2;
+$green: #BDD285;
+$orange: #FA964C;
+
+$darkest-grey: #333;
+$dark-grey: #4F4F4F;
+$grey: #828282;
+$grey2: #b1b1b1;
+$light-grey: #F2F2F2;
