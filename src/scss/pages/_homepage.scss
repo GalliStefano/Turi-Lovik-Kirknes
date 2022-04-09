@@ -1,0 +1,33 @@
+#tlk-category {
+	display: grid;
+	margin: 0 50px;
+	grid-template-columns: 0.6fr 80px .8fr 160px;
+	grid-template-rows: 1fr auto 1fr;
+	grid-template-areas: ". . slider ." "title . slider ." ". . slider .";
+	hgroup {
+		grid-area: title;
+		h1 {
+			font: 500 40px/1.2 $Gambetta;
+			color: $bianco;
+			margin: 20px 0;
+		}
+	}
+	article {
+    width: 100%;
+		grid-area: slider;
+		height: 100vh;
+		.swiper-wrapper {
+			transform: translate3d(0,25vh,0);
+			figure {
+				overflow: hidden;
+				border-radius: 260px;
+				img {
+					width: 100%;
+				}
+			}
+		}
+
+	}
+
+
+}

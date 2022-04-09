@@ -170,6 +170,7 @@ function watchFiles() {
 	watch(paths.styles.dev, css)
 	watch('src/**/*.{html,njk}').on("change", series(html, browserSyncReload))
 	watch(paths.images.dev, series(images, browserSyncReload))
+	watch(paths.images.svg, series(svg, browserSyncReload))
 	watch(paths.scripts.dev, series(js, browserSyncReload))
 	watch(paths.videos.dev, series(video, browserSyncReload))
 }
@@ -177,7 +178,7 @@ function watchFiles() {
 // Define complex tasks
 const watcher = parallel(watchFiles, serve);
 const build = series(clean, clearCache, parallel(fonts, pdf, images, svg, video, css, js, html));
-const buildProd = series(clean, clearCache, parallel(fonts, pdf, images, video, svg, css, minJs, minHtml));
+const buildProd = series(clean, clearCache, parallel(fonts, pdf, images, svg, video, svg, css, minJs, minHtml));
 const dev = series(build, watcher);
 const prod  = series(buildProd, watcher);
 
@@ -187,6 +188,7 @@ exports.clean = clean;
 exports.fonts = fonts;
 exports.pdf = pdf;
 exports.images = images;
+exports.svg = svg;
 exports.css = css;
 exports.js = js;
 exports.minJs = minJs;

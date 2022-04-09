@@ -1,15 +1,55 @@
 
 // const Swiper = require('swiper/swiper-bundle');
-import gsap from 'gsap';
-const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
-import barba from '@barba/core';
-const imagesLoaded = require('imagesloaded');
-import {loading, hpEnter, hpLeave, CsEnter} from './animation';
-import {SwipeEventDispatcher} from  '../js/swipedEvents.js';
+// import gsap from 'gsap';
+// import barba from '@barba/core';
+
+
+// const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
+// const imagesLoaded = require('imagesloaded');
+// import {loading, hpEnter, hpLeave, CsEnter} from './animation';
+// import {SwipeEventDispatcher} from  '../js/swipedEvents.js';
+
+import Swiper from 'swiper/swiper-bundle';
+import {lazyload} from './utils/lazyload'
+
+lazyload();
 
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+	// JS MAIN - Start
+
+	const swiper = new Swiper('.swiper', {
+
+		direction: 'vertical',
+		loop: true,
+		slidesPerView: 2,
+		speed: 600,
+		autoplay: true,
+		grabCursor: true,
+		effect: "creative",
+		creativeEffect: {
+			limitProgress: 2,
+			prev: {
+				translate: [0, "-135%", 0],
+				rotate: [0, 0, -15],
+			},
+			next: {
+				translate: [0, "135%", 0],
+				rotate: [0, 0, 15],
+			},
+		},
+		on: {
+			observerUpdate: function () {
+				console.log('slider update');
+			}
+		}
+	
+	});
+
+	// JS MAIN - End
+});
 
 // document.addEventListener("DOMContentLoaded", function() {
 // 	// JS MAIN - Start

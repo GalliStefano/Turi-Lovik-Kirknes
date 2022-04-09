@@ -1,0 +1,39 @@
+header {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 40px 50px;
+	ul {
+		&:first-of-type {
+			li {
+				&:first-of-type {
+					display: none;
+				}
+				a {
+					img {
+						width: 30vw;
+						height: auto;
+					}
+				}
+			}
+		}
+		&:last-of-type {
+			li {
+				&:last-of-type {
+					display: none;
+				}
+			}
+		}
+		li {
+			a {
+				color: $beige;
+				display: inline-block;
+			}
+		}
+	}
+}

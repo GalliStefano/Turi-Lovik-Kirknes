@@ -10,20 +10,20 @@ const paths = {
 		main: 'src/js/main.js'
 	},
 	styles: {
-		dev: 'src/scss/*.{scss,sass}',
+		dev: 'src/scss/**/*.{scss,sass}',
 		dist: 'dist/css/',
 		main: 'dist/css/main.min.css'
 	},
 	fonts: {
-		dev: 'src/font/*.{eot,otf,svg,woff,ttf,woff2}',
-		dist: 'dist/font/'
+		dev: 'src/fonts/*.{eot,otf,svg,woff,ttf,woff2}',
+		dist: 'dist/fonts/'
 	},
 	pdf: {
 		dev: 'src/pdf/*',
 		dist: 'dist/pdf/'
 	},
 	images: {
-		dev: 'src/images/**/*.{gif,png,jpg}',
+		dev: 'src/images/**/*.{gif,png,jpg,jpeg}',
 		svg: 'src/images/**/*.svg',
 		dist: 'dist/images/'
 	},
