@@ -22,6 +22,10 @@ const paths = {
 		dev: 'src/pdf/*',
 		dist: 'dist/pdf/'
 	},
+	data: {
+		dev: 'src/data/*',
+		dist: 'dist/data/'
+	},
 	images: {
 		dev: 'src/images/**/*.{gif,png,jpg,jpeg}',
 		svg: 'src/images/**/*.svg',

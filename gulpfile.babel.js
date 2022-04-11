@@ -39,7 +39,7 @@ function serve(cb) {
 	browserSync.init({
 		server: {
 			baseDir: "dist",
-			index: "homepage.html"
+			index: "fashion.html"
 		},
 		logPrefix: 'ʕ•ᴥ•ʔ BrowserSync'
 	});
@@ -56,6 +56,14 @@ function browserSyncReload(cb) {
 function fonts() {
   return src(paths.fonts.dev)
     .pipe(dest(paths.fonts.dist))
+    // .pipe(notify({ message: "fonts moved!!!", onLast: true }))
+    .pipe(browserSync.stream());
+}
+
+// import data
+function data() {
+  return src(paths.data.dev)
+    .pipe(dest(paths.data.dist))
     // .pipe(notify({ message: "fonts moved!!!", onLast: true }))
     .pipe(browserSync.stream());
 }
@@ -177,8 +185,8 @@ function watchFiles() {
 
 // Define complex tasks
 const watcher = parallel(watchFiles, serve);
-const build = series(clean, clearCache, parallel(fonts, pdf, images, svg, video, css, js, html));
-const buildProd = series(clean, clearCache, parallel(fonts, pdf, images, svg, video, svg, css, minJs, minHtml));
+const build = series(clean, clearCache, parallel(fonts, pdf, data, images, svg, video, css, js, html));
+const buildProd = series(clean, clearCache, parallel(fonts, pdf, data, images, svg, video, svg, css, minJs, minHtml));
 const dev = series(build, watcher);
 const prod  = series(buildProd, watcher);
 
@@ -186,7 +194,6 @@ const prod  = series(buildProd, watcher);
 exports.clearCache = clearCache;
 exports.clean = clean;
 exports.fonts = fonts;
-exports.pdf = pdf;
 exports.images = images;
 exports.svg = svg;
 exports.css = css;

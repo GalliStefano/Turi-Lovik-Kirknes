@@ -53,10 +53,10 @@ nav {
 			font: normal 18px/1.3 $ExtraLight;
 			transition: all 300ms ease-in-out;
 			&:hover {
-				color: $bianco;
+				color: var(--bianco);
 			}
 			.active {
-				color: $bianco;
+				color: var(--bianco);
 				font: normal 18px/1.3 $Regular;
 			}
 		}

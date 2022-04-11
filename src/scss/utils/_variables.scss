@@ -25,8 +25,14 @@
 $Gambetta: 'Gambetta-Variable', Helvetica, Arial, sans-serif;
 $Inter: 'Inter', Helvetica, Arial, sans-serif;
 
-$bianco: #FFF;
-$beige: #DED1B8;
-$mattone: #9B4C43;
-$verde: #5A6E43;
-$marrone: #543E3E;
+:root {
+  --mattone: #9B4C43;
+	--bianco: #FFF;
+	--beige: #DED1B8;
+	--arancio: #b5944e
+	--verde: #5A6E43;
+	--marrone: #543E3E;
+	--azzurro: #9dced3;
+	--grigio: #656565;
+	--viola: #780a3c;
+}

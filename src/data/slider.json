@@ -1,0 +1,40 @@
+{
+	"fashion":[
+		{
+			"page": "mayfair.html",
+			"url": "mayfair-main.webp",
+			"alt": "mayfair main image",
+			"caption": "special edition - Mayfair Magazine",
+			"bgColor": "mattone"
+		},
+		{
+			"page": "cereal.html",
+			"url": "cereal-main.webp",
+			"alt": "cereal main image",
+			"caption": "editorial photograpy - Cereal Magazine",
+			"bgColor": "marrone"
+		},
+		{
+			"page": "cereal-bis.html",
+			"url": "cereal-bis-main.webp",
+			"alt": "cereal main bis image",
+			"caption": "special edition - Cereal Magazine",
+			"bgColor": "azzurro"
+		},
+		{
+			"page": "london.html",
+			"url": "london-main.webp",
+			"alt": "london image",
+			"caption": "summer collection - Luxury London",
+			"bgColor": "arancio"
+		},
+		{
+			"page": "frank.html",
+			"url": "frank-main.webp",
+			"alt": "london image",
+			"caption": "photograpy - Frank Remme",
+			"bgColor": "viola"
+		}
+	]
+
+}
