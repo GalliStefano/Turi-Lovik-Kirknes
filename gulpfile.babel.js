@@ -186,9 +186,9 @@ function watchFiles() {
 // Define complex tasks
 const watcher = parallel(watchFiles, serve);
 const build = series(clean, clearCache, parallel(fonts, pdf, data, images, svg, video, css, js, html));
-const buildProd = series(clean, clearCache, parallel(fonts, pdf, data, images, svg, video, svg, css, minJs, minHtml));
 const dev = series(build, watcher);
-const prod  = series(buildProd, watcher);
+const prod = series(clean, clearCache, parallel(fonts, pdf, data, images, svg, video, svg, css, minJs, minHtml));
+
 
 // Export tasks
 exports.clearCache = clearCache;

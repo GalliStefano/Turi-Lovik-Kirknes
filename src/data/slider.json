@@ -35,6 +35,42 @@
 			"caption": "photograpy - Frank Remme",
 			"bgColor": "viola"
 		}
+	],
+	"jewellery":[
+		{
+			"page": "cartier.html",
+			"url": "cartier-main.webp",
+			"alt": "cartier main image",
+			"caption": "cactus collection - Cartier Jewellery",
+			"bgColor": "verde"
+		},
+		{
+			"page": "vo.html",
+			"url": "vo-main.webp",
+			"alt": "vo plus main image",
+			"caption": "editorial photograpy - VO+",
+			"bgColor": "arancio"
+		},
+		{
+			"page": "sicis.html",
+			"url": "sicis-main.webp",
+			"alt": "sicis main image",
+			"caption": "jewel photograpy - Sicis Jewellery",
+			"bgColor": "azzurro"
+		},
+		{
+			"page": "vogue.html",
+			"url": "vogue-main.webp",
+			"alt": "vogue image",
+			"caption": "snake collection - Vogue Italia",
+			"bgColor": "marrone"
+		},
+		{
+			"page": "collins.html",
+			"url": "collins-main.webp",
+			"alt": "london image",
+			"caption": "editorial photograpy - G. Collins and sons",
+			"bgColor": "mattone"
+		}
 	]
-
 }

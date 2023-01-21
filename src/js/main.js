@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const multitabLinks = [].slice.call(document.querySelectorAll('footer nav a'))
 const pageUrl = window.location.href.split("/").pop();
 
-console.log(pageUrl);
+// console.log(pageUrl);
 
 multitabLinks.forEach(el => {
 	
@@ -42,15 +42,7 @@ multitabLinks.forEach(el => {
 
 });
 
-
-
-
-
-
-
-
-
-	const mainSlider = new Swiper('.swiper.main-round-slider', {
+	const mainSlider = new Swiper('.swiper.main-round-slider.show', {
 
 		direction: 'vertical',
 		loop: true,
@@ -58,6 +50,7 @@ multitabLinks.forEach(el => {
 		speed: 600,
 		autoplay: false,
 		grabCursor: true,
+		observer: true,
 		effect: "creative",
 		creativeEffect: {
 			limitProgress: 2,
@@ -69,9 +62,6 @@ multitabLinks.forEach(el => {
 				translate: [0, "135%", 0],
 				rotate: [0, 0, 15],
 			},
-		},
-		on: {
-
 		}
 	
 	});
@@ -85,10 +75,10 @@ multitabLinks.forEach(el => {
 					namespace: ['jewellery', 'fashion']
 				},
 				// leave: current =>	pageLeave(current.container),
-				beforeEnter: ({next}) => dataCarousel(next.namespace),
+				// beforeEnter: ({next}) => dataCarousel(next),
 				enter(next) {
-					console.log('dentro enter');
-					pageEnter(next.container);
+					// console.log('dentro enter');
+					dataCarousel(next)
 				},
 			},
 		// 	{
@@ -258,7 +248,3 @@ multitabLinks.forEach(el => {
 
 // 	// JS MAIN - End
 // });
-
-
-console.log('dentro al js');
-

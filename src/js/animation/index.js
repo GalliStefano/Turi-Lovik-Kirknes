@@ -1,1 +1,1 @@
-export {pageEnter, pageLeave} from './homepage';
+export {pageEnter, pageLeave, pageChange} from './homepage';

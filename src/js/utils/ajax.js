@@ -1,15 +1,16 @@
 export function get(url) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
+		xhr.responseType = 'json';
     const done = 4
     const success = 200
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === done) {
         if (xhr.status === success) {
-          resolve(xhr.responseText)
+          resolve(xhr.response)
         } else {
-          reject(xhr.responseText)
+          reject(xhr.response)
         }
       }
     }
