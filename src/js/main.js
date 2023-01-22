@@ -3,7 +3,8 @@ import barba from '@barba/core';
 
 const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
 // const imagesLoaded = require('imagesloaded');
-import {pageEnter, pageLeave} from './animation';
+// import {pageEnter, pageLeave} from './animation/homepage';
+import {bigImg} from './animation/details';
 // import {SwipeEventDispatcher} from  '../js/swipedEvents.js';
 
 import Swiper from 'swiper/swiper-bundle';
@@ -81,6 +82,21 @@ multitabLinks.forEach(el => {
 					dataCarousel(next)
 				},
 			},
+			{
+				name: 'changeImg',
+				to: {
+					namespace: ['cartier']
+				},
+				// leave: current =>	pageLeave(current.container),
+				// beforeEnter: ({next}) => dataCarousel(next),
+				enter(next) {
+					// console.log('dentro enter');
+					bigImg(next)
+				},
+			},
+
+
+
 		// 	{
 		// 	name: 'jewellery',
 		// 	to: {

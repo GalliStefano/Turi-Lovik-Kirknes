@@ -1,6 +1,4 @@
 import gsap from 'gsap';
-import Swiper from 'swiper/swiper-bundle';
-
 
 const pageLeave = (container) => {
 

@@ -1,7 +1,7 @@
 import {get} from '../utils/ajax'
 import Swiper from 'swiper/swiper-bundle';
 import gsap from 'gsap';
-import {pageEnter, pageLeave, pageChange} from '../animation';
+import {pageChange} from '../animation/homepage';
 
 export const dataCarousel = (page) => {
 
@@ -14,13 +14,15 @@ export const dataCarousel = (page) => {
 			let carousel = `<div class="swiper-wrapper">`;
 
 			data.forEach(el => {
-				carousel += `<div class="swiper-slide" data-bg="${el.bgColor}" data-page="${el.page}">
-				<figure>
-					<img src="/images/${el.url}" alt="${el.alt}">
-					<figcaption>
-						${el.caption}
-					</figcaption>
-				</figure>
+				carousel += `<div class="swiper-slide" data-bg="${el.bgColor}">
+				<a href="/${el.page}">
+					<figure>
+						<img src="/images/${el.url}" alt="${el.alt}">
+						<figcaption>
+							${el.caption}
+						</figcaption>
+					</figure>
+				</a>
 				</div>`
 			});
 
