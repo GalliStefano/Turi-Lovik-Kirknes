@@ -3,16 +3,23 @@ header {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	right: 0;
+	width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 40px 50px;
+	overflow: hidden;
+	margin: 40px 0;
+	padding: 0 50px;
 	ul {
+		position: relative;
 		&:first-of-type {
 			li {
 				&:first-of-type {
-					display: none;
+					opacity: 0;
+					position: absolute;
+					top: 50%;
+					left: 0;
+					transform: translate(-50px, -50%);
 				}
 				a {
 					img {
@@ -25,7 +32,11 @@ header {
 		&:last-of-type {
 			li {
 				&:last-of-type {
-					display: none;
+					opacity: 0;
+					white-space: nowrap;
+					position: absolute;
+					top: 0;
+					left: 0;
 				}
 			}
 		}

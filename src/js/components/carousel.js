@@ -1,6 +1,5 @@
 import {get} from '../utils/ajax'
 import Swiper from 'swiper/swiper-bundle';
-import gsap from 'gsap';
 import {pageChange} from '../animation/homepage';
 
 export const dataCarousel = (page) => {
@@ -17,7 +16,7 @@ export const dataCarousel = (page) => {
 				carousel += `<div class="swiper-slide" data-bg="${el.bgColor}">
 				<a href="/${el.page}">
 					<figure>
-						<img src="/images/${el.url}" alt="${el.alt}">
+						<img src="/images/${el.url}" alt="${el.alt}" class="lazyload" loading="lazy">
 						<figcaption>
 							${el.caption}
 						</figcaption>
@@ -40,6 +39,7 @@ export const dataCarousel = (page) => {
 				autoplay: false,
 				grabCursor: true,
 				observer: true,
+				a11y: false,
 				effect: "creative",
 				creativeEffect: {
 					limitProgress: 2,
@@ -54,9 +54,6 @@ export const dataCarousel = (page) => {
 				}
 			
 			});
-
-			// let swiperMain = document.querySelector('.swiper.main-round-slider:not(.show)').swiper;
-			// swiperMain.destroy();
 
 			pageChange(page.container);
 

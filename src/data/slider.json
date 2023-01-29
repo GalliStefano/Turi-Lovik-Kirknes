@@ -1,35 +1,35 @@
 {
 	"fashion":[
 		{
-			"page": "mayfair.html",
+			"page": "cartier.html",
 			"url": "mayfair-main.webp",
 			"alt": "mayfair main image",
 			"caption": "special edition - Mayfair Magazine",
 			"bgColor": "mattone"
 		},
 		{
-			"page": "cereal.html",
+			"page": "cartier.html",
 			"url": "cereal-main.webp",
 			"alt": "cereal main image",
 			"caption": "editorial photograpy - Cereal Magazine",
 			"bgColor": "marrone"
 		},
 		{
-			"page": "cereal-bis.html",
+			"page": "cartier.html",
 			"url": "cereal-bis-main.webp",
 			"alt": "cereal main bis image",
 			"caption": "special edition - Cereal Magazine",
 			"bgColor": "azzurro"
 		},
 		{
-			"page": "london.html",
+			"page": "cartier.html",
 			"url": "london-main.webp",
 			"alt": "london image",
 			"caption": "summer collection - Luxury London",
 			"bgColor": "arancio"
 		},
 		{
-			"page": "frank.html",
+			"page": "cartier.html",
 			"url": "frank-main.webp",
 			"alt": "london image",
 			"caption": "photograpy - Frank Remme",

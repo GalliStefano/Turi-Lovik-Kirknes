@@ -1,0 +1,35 @@
+#tlk-category {
+	grid-area: title;
+	article {
+		overflow: hidden;
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		width: 35vw;
+		p {
+			white-space: nowrap;
+			margin: 0;
+			text-transform: uppercase;
+			font-size: 12px;
+			letter-spacing: 2px;
+		}
+		h1 {
+			font: 400 95px/0.9 $Gambetta;
+			margin: 10px 0 0;
+		}
+	}
+	.secondary-img {
+		opacity: 0;
+		width: 22vw;
+		margin-left: 3vw;
+		transform-origin: top;
+		transform: scaleY(1.4) translateY(12vw);
+	}
+	.third-img {
+		width: 100vw;
+		position: absolute;
+		top: 135vh;
+		left: 0;
+		transform: scale(0.9);
+	}
+}

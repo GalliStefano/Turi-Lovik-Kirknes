@@ -1,0 +1,28 @@
+.main-round-slider {
+	width: 100%;
+	grid-area: slider;
+	height: 100vh;
+	pointer-events: none;
+	z-index: 0;
+	&.show {
+		z-index: 1;
+		pointer-events: auto;
+	}
+	.swiper-wrapper {
+		transform: translate3d(0, 25vh ,0);
+		.swiper-slide {
+			figure {
+				border-radius: 25vh;
+				overflow: hidden;
+				height: 50vh;
+				img {
+					width: 100%;
+					transform: translateY(-14%);
+				}
+				figcaption {
+					display: none;
+				}
+			}
+		}
+	}
+}

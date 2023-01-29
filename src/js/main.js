@@ -1,30 +1,28 @@
 import gsap from 'gsap';
 import barba from '@barba/core';
-
 const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
-// const imagesLoaded = require('imagesloaded');
-// import {pageEnter, pageLeave} from './animation/homepage';
-import {bigImg} from './animation/details';
-// import {SwipeEventDispatcher} from  '../js/swipedEvents.js';
-
+const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
 import Swiper from 'swiper/swiper-bundle';
 import {lazyload} from './utils/lazyload'
+import {bigImg, goAway, parallaxScrollImg, fullscreenImg} from './animation/details';
 import {dataCarousel} from './components/carousel';
+import {createTitle} from './components/title';
 
 
-lazyload();
 gsap.install(window);
 gsap.registerPlugin(CSSRulePlugin);
-// gsap.registerPlugin(ScrollTrigger);
-// gsap.registerPlugin(ScrollToPlugin);
-
+gsap.registerPlugin(ScrollTrigger);
+lazyload();
 
 document.addEventListener("DOMContentLoaded", function() {
 	// JS MAIN - Start
 
-
 const multitabLinks = [].slice.call(document.querySelectorAll('footer nav a'))
 const pageUrl = window.location.href.split("/").pop();
+
+// global instance
+const parallax = null;
+const fullscreen = null;
 
 // console.log(pageUrl);
 
@@ -35,6 +33,8 @@ multitabLinks.forEach(el => {
 		multitabLinks.forEach(el => {
 			el.classList.remove('active');
 		})
+
+		console.log(el.href);
 
 		el.classList.add('active');
 	})
@@ -52,6 +52,7 @@ multitabLinks.forEach(el => {
 		autoplay: false,
 		grabCursor: true,
 		observer: true,
+		a11y: false,
 		effect: "creative",
 		creativeEffect: {
 			limitProgress: 2,
@@ -67,6 +68,7 @@ multitabLinks.forEach(el => {
 	
 	});
 
+
 	barba.init({
 		preventRunning: true,
 		transitions: [
@@ -77,45 +79,54 @@ multitabLinks.forEach(el => {
 				},
 				// leave: current =>	pageLeave(current.container),
 				// beforeEnter: ({next}) => dataCarousel(next),
-				enter(next) {
-					// console.log('dentro enter');
-					dataCarousel(next)
-				},
+				enter: (next) => dataCarousel(next)
 			},
 			{
+				sync: true,
 				name: 'changeImg',
 				to: {
 					namespace: ['cartier']
 				},
-				// leave: current =>	pageLeave(current.container),
-				// beforeEnter: ({next}) => dataCarousel(next),
-				enter(next) {
-					// console.log('dentro enter');
-					bigImg(next)
-				},
+				leave: data => goAway(data.current.container),
+				enter: data => bigImg(data.next.container)
 			},
-
-
-
-		// 	{
-		// 	name: 'jewellery',
-		// 	to: {
-		// 		namespace: ['jewellery']
-		// 	},
-		// 	once({next}) {
-		// 		console.log('once coming soon');
-		// 		loading(next.container);
-		// 		setTimeout(() => {
-		// 			CsEnter(next.container);
-		// 		}, 1000);
-		// 	},
-		// 	leave: ({current}) =>	hpLeave(current.container), 
-		// 	enter({next}) {
-		// 		gsap.set("#mc_cs .loading-logo", {opacity: 0});
-		// 		CsEnter(next.container);				
-		// 	},
-		// }
 	],
+	views: [
+		{
+			namespace: 'fashion',
+			afterEnter(data) {
+				console.log('sono dentro a fashion');
+				createTitle(data)
+			}
+		},
+		{
+			namespace: 'cartier',
+			afterEnter(data) {
+
+				ScrollTrigger.create({
+					animation: parallaxScrollImg(data.next.container),
+					scroller: "body main",
+					trigger: "main #tlk-category .secondary-img",
+					start: 1,
+					// markers: true,
+					scrub: true
+				});
+
+				ScrollTrigger.create({
+					animation: fullscreenImg(data.next.container),
+					scroller: "body main",
+					trigger: data.next.container.querySelector('.third-img'),
+					start: "top bottom",
+					end: "top top",
+					// markers: true,
+					scrub: true
+				});
+
+			},
+			afterLeave: () => ScrollTrigger.killAll()
+
+		}
+	]
 	// views: [{
 	// 	namespace: 'home',
 	// 	afterEnter() {
@@ -158,6 +169,9 @@ multitabLinks.forEach(el => {
 
 	// JS MAIN - End
 });
+
+
+
 
 // document.addEventListener("DOMContentLoaded", function() {
 // 	// JS MAIN - Start

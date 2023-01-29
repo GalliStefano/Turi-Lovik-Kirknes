@@ -74,4 +74,37 @@ const pageChange = (container) => {
 	return tl;
 }
 
-export {pageEnter, pageLeave, pageChange};
+const removeOldTitle = () => {
+	const title = document.querySelector("section article:first-of-type");
+	title.remove();
+}
+
+// const removeOldSlider = () => {
+
+// }
+
+
+
+const slideChange = (color) => {
+
+	const title = document.querySelector("section article:first-of-type");
+	const newTitle = document.querySelector("section article:last-of-type");
+	const newUpperTitle = newTitle.querySelector("p");
+
+	const tl = gsap.timeline({});
+
+	tl
+		.set(document.body, {backgroundColor: `var(--${color})`}, 0)
+		.to(title, {opacity: "0", ease: "power1.inOut", duration: 0.3}, 0)
+		.add(() => {
+			removeOldTitle();
+		}, ">")
+		.from(newTitle, {width: "0", ease: "power1.inOut", duration: 0.6}, 0.1)
+		.from(newUpperTitle, {opacity: "0.2", ease: "power1.inOut", duration: 0.6}, 0.1)
+
+	return tl;
+}
+
+
+
+export {pageEnter, pageLeave, pageChange, slideChange};
