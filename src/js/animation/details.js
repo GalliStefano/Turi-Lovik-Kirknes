@@ -1,6 +1,8 @@
 import gsap from 'gsap';
+import {populateImg} from '../components/detail-page'
 
 
+// TRASFORMO LO SLIDER IN UNA SOLA IMG
 const bigImg = (container) => {
 
 	const slider = document.querySelector('.main-round-slider.show');
@@ -13,8 +15,7 @@ const bigImg = (container) => {
 
 	const secImg = container.querySelector('.secondary-img');
 
-	
-	const tl = gsap.timeline();
+	const tl = gsap.timeline({onStart: populateImg});
 
 	tl
 		.set(document.body, {overflow: "auto"})
@@ -36,7 +37,7 @@ const bigImg = (container) => {
 }
 
 
-
+// NASCONDO ELEMENTI DA HP E MOSTRO HEADER PAGINA DI DETTAGLIO
 
 const goAway = (container) => {
 
@@ -66,20 +67,8 @@ const goAway = (container) => {
 
 		.to(title, {opacity: "0.2", width: "0", ease: "power2.out", duration: 0.6}, 0)
 
-
-		// .set(slider, {pointerEvents: "none", transformOrigin: "left"}, 0)
-		// .to(prevImg, {y: "-25%", ease: "power1.inOut", duration: 0.5}, 0)
-		// .to(nextImg, {y: "25%", ease: "power1.inOut", duration: 0.5}, 0)
-
-		// .to(slider, {scale: 1.2, ease: "power2.out", duration: 1}, 0)
-		// .to(imgContainer, {height: "700px", y: "-5vh", borderRadius: "0px",ease: "power2.out", duration: 1}, 0)
-		// .to(mainImg, {height: "700px", ease: "power2.out", duration: 1}, 0)
-		// .to(img, {translateY: 0, ease: "power2.out", duration: 1}, 0)
-
-
 	return tl;
 }
-
 
 
 const parallaxScrollImg = (container) => {
@@ -102,7 +91,6 @@ const fullscreenImg = (container) => {
 
 	return gsap.to(terImg, {scale: 1, ease: "none"}, 0);
 }
-
 
 
 export {bigImg, goAway, parallaxScrollImg, fullscreenImg};

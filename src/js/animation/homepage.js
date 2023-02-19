@@ -1,110 +1,75 @@
 import gsap from 'gsap';
+import {removeOldTitle} from '../components/title';
+import {removeOldSlider} from '../components/carousel';
 
-const pageLeave = (container) => {
-
-	const images = document.querySelectorAll('main .main-round-slider.show .swiper-wrapper figure');
-	const activeSlider = document.querySelector('main .main-round-slider:not(.show)');
-	const imagesNew = activeSlider.querySelectorAll('.swiper-wrapper figure');
-	const tl = gsap.timeline();
-
-	tl
-		.to(images, {opacity: 0.4, scale: 0.7, ease: "power1.inOut", duration: 0.5}, 0)
-		// .add(() => {
-		// 	document.querySelector('main .main-round-slider.show').classList.remove('show');
-		// 	activeSlider.classList.add('show');
-		// 	}, 0.4)
-		// .to(imagesNew, {opacity: 1, scale: 1, ease: "power1.inOut", duration: 0.5}, 0.3)
-
-
-
-
-		// .to(titolo, {skewX: '0deg', translateY: '0%',  scaleY: 1, rotate: '0deg', ease: "expo.out", duration: 2.5}, 1)
-		// .call(removeElement, ['#mc_hp .loading-logo'], 2)
-
-
-	return tl;
-}
-
-const switchSlide = (container) => {}
-
-
-const pageEnter = (container) => {
-
-
-	const images = document.querySelectorAll('main .main-round-slider.show .swiper-wrapper figure');
-	const activeSlider = document.querySelector('main .main-round-slider:not(.show)');
-	const imagesNew = activeSlider.querySelectorAll('.swiper-wrapper figure');
-	const tl = gsap.timeline();
-
-	tl
-		.set(activeSlider, {opacity: 1}, 0)
-		.set(imagesNew, {scale: 0.7, opacity: 0.4}, 0)
-		.to(images, {opacity: 0.4, scale: 0.7, ease: "power3.Out", duration: 0.8}, 0)
-		.to(imagesNew, {opacity: 1, scale: 1, ease: "power4.Out", duration: 1}, 0.2)
-		.add(() => {
-			document.querySelector('main .main-round-slider.show').classList.remove('show');
-			activeSlider.classList.add('show');
-			}, 0.8)
-
-
-	return tl;
-}
-
-
-const pageChange = (container) => {
+// FADE IN/FADE OUT SLIDER COLOR DURANTE CAMBIO PAGINA
+const sliderChange = () => {
 	
-	const images = document.querySelectorAll('main .main-round-slider.show .swiper-wrapper figure');
 	const activeSlider = document.querySelector('main .main-round-slider:not(.show)');
-	const imagesNew = activeSlider.querySelectorAll('.swiper-wrapper figure');
-	const tl = gsap.timeline();
+	const images = gsap.utils.toArray('main .main-round-slider.show .swiper-wrapper figure');
+	const imagesNew = [].slice.call(activeSlider.querySelectorAll('.swiper-wrapper figure'));
+	const bgColor = activeSlider.querySelector(".swiper-slide-active").dataset.bg
+	const color = activeSlider.querySelector(".swiper-slide-active").dataset.color
+
+	const tl = gsap.timeline({onComplete: removeOldSlider});
 
 	tl
-		.set(imagesNew, {opacity: 0, scale: 0.7}, 0)
+		.set(document.body, {backgroundColor: `var(--${bgColor})`, color: `var(--${color})` }, 0)
 		.to(images, {opacity: 0, scale: 0.7, ease: "power1.in", duration: 0.7}, 0)
-		.to(imagesNew, {opacity: 1, scale: 1, ease: "circ.out", duration: 0.7}, 0.45)
-		.add(() => {
-			document.querySelector('main .main-round-slider.show').classList.remove('show');
-			activeSlider.classList.add('show');
-			let swiperMain = document.querySelector('.swiper.main-round-slider:not(.show)');
-			swiperMain.remove();
-			}, ">")
-		// .set(activeSlider, {clearProps: "all"});
-
+		.from(imagesNew, {opacity: 0, scale: 0.7, ease: "circ.out", duration: 0.7}, 0.45)
 
 	return tl;
 }
 
-const removeOldTitle = () => {
-	const title = document.querySelector("section article:first-of-type");
-	title.remove();
-}
-
-// const removeOldSlider = () => {
-
-// }
-
-
-
-const slideChange = (color) => {
+// FADE IN/FADE OUT TITLE + CAMBIO BGK COLOR DURANTE SWIPE
+const changeTitlesAndBgk = (bgColor, color) => {
 
 	const title = document.querySelector("section article:first-of-type");
 	const newTitle = document.querySelector("section article:last-of-type");
 	const newUpperTitle = newTitle.querySelector("p");
 
-	const tl = gsap.timeline({});
+	const tl = gsap.timeline({defaults: { overwrite: "auto" }});
 
 	tl
-		.set(document.body, {backgroundColor: `var(--${color})`}, 0)
+		.set(document.body, {backgroundColor: `var(--${bgColor})`, color: `var(--${color})` }, 0)
 		.to(title, {opacity: "0", ease: "power1.inOut", duration: 0.3}, 0)
 		.add(() => {
 			removeOldTitle();
 		}, ">")
-		.from(newTitle, {width: "0", ease: "power1.inOut", duration: 0.6}, 0.1)
-		.from(newUpperTitle, {opacity: "0.2", ease: "power1.inOut", duration: 0.6}, 0.1)
+		.from(newTitle, {width: "0", ease: "power1.inOut", duration: 0.6}, 0.2)
+		.from(newUpperTitle, {opacity: "0.2", ease: "power1.inOut", duration: 0.6}, 0.2)
 
 	return tl;
 }
 
+// USCITA DALL'HOMEPAGE: TITLE + FOOTER 
+const hpExit = (data) => {
 
+	const title = data.querySelector("article");
+	const footer = data.querySelector("footer nav");
 
-export {pageEnter, pageLeave, pageChange, slideChange};
+	const tl = gsap.timeline({ defaults: {ease: "power1.inOut"} });
+
+	tl
+		.to(title, {width: 0, opacity: 1, duration: 0.7})
+		.to(footer, {opacity: 0, duration: 0.4}, 0)
+
+	return tl;
+}
+
+// INGRESSO IN HOMEPAGE: TITLE + FOOTER 
+const hpEnter = (data) => {
+
+	const title = data.querySelector("article");
+	const footer = data.querySelector("footer nav");
+
+	const tl = gsap.timeline({ defaults: {ease: "power1.inOut"} });
+
+	tl
+		.from(title, {width: 0, opacity: 0.2, duration: 0.7}, 0.5)
+		.from(footer, {yPercent: 100, duration: 0.6}, 0.4)
+
+	return tl;
+}
+
+export {sliderChange, changeTitlesAndBgk, hpExit, hpEnter};

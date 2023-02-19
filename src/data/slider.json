@@ -1,75 +1,77 @@
 {
 	"fashion":[
 		{
-			"page": "cartier.html",
+			"page": "mayfair",
 			"url": "mayfair-main.webp",
 			"alt": "mayfair main image",
-			"caption": "special edition - Mayfair Magazine",
+			"caption": "special edition - Mayfair<br>Magazine",
 			"bgColor": "mattone"
 		},
 		{
-			"page": "cartier.html",
+			"page": "cereal",
 			"url": "cereal-main.webp",
 			"alt": "cereal main image",
-			"caption": "editorial photograpy - Cereal Magazine",
+			"caption": "editorial photograpy - Cereal<br>Magazine",
 			"bgColor": "marrone"
 		},
 		{
-			"page": "cartier.html",
-			"url": "cereal-bis-main.webp",
+			"page": "cereal-special",
+			"url": "cereal-special-main.webp",
 			"alt": "cereal main bis image",
-			"caption": "special edition - Cereal Magazine",
-			"bgColor": "azzurro"
+			"caption": "special edition - Cereal<br>Magazine",
+			"bgColor": "azzurro",
+			"color": "marrone"
 		},
 		{
-			"page": "cartier.html",
+			"page": "london",
 			"url": "london-main.webp",
 			"alt": "london image",
-			"caption": "summer collection - Luxury London",
+			"caption": "summer collection - Luxury<br>London",
 			"bgColor": "arancio"
 		},
 		{
-			"page": "cartier.html",
+			"page": "frank",
 			"url": "frank-main.webp",
-			"alt": "london image",
-			"caption": "photograpy - Frank Remme",
+			"alt": "frank image",
+			"caption": "photograpy - Frank<br>Remme",
 			"bgColor": "viola"
 		}
 	],
 	"jewellery":[
 		{
-			"page": "cartier.html",
+			"page": "cartier",
 			"url": "cartier-main.webp",
 			"alt": "cartier main image",
-			"caption": "cactus collection - Cartier Jewellery",
+			"caption": "cactus collection - Cartier<br>Jewellery",
 			"bgColor": "verde"
 		},
 		{
-			"page": "vo.html",
+			"page": "vo",
 			"url": "vo-main.webp",
 			"alt": "vo plus main image",
 			"caption": "editorial photograpy - VO+",
 			"bgColor": "arancio"
 		},
 		{
-			"page": "sicis.html",
+			"page": "sicis",
 			"url": "sicis-main.webp",
 			"alt": "sicis main image",
-			"caption": "jewel photograpy - Sicis Jewellery",
-			"bgColor": "azzurro"
+			"caption": "jewel photograpy - Sicis<br>Jewellery",
+			"bgColor": "azzurro",
+			"color": "marrone"
 		},
 		{
-			"page": "vogue.html",
+			"page": "vogue",
 			"url": "vogue-main.webp",
 			"alt": "vogue image",
-			"caption": "snake collection - Vogue Italia",
+			"caption": "snake collection - Vogue<br>Italia",
 			"bgColor": "marrone"
 		},
 		{
-			"page": "collins.html",
+			"page": "collins",
 			"url": "collins-main.webp",
 			"alt": "london image",
-			"caption": "editorial photograpy - G. Collins and sons",
+			"caption": "editorial photograpy - G. Collins<br>and sons",
 			"bgColor": "mattone"
 		}
 	]
