@@ -12,7 +12,6 @@ export const initFooter = () => {
 
 }
 
+const updateColorFooter = (bgColor, ) => {
 
-const updateColorFooter = () => {
-	
 }

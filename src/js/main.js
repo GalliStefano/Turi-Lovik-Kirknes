@@ -50,7 +50,12 @@ document.addEventListener("DOMContentLoaded", function() {
 					dataDetails('enter');
 
 			},
-				leave: data => goAway(data.current.container),
+				leave: data => {
+					dataDetails();
+					goAway(data.current.container)
+				},
+				
+				
 				enter: data => bigImg(data.next.container)
 			},
 	],

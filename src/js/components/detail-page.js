@@ -58,12 +58,11 @@ const dataDetails = (type) => {
 			if (type == 'enter') {
 				setHeader(title, goBackPage);
 				updateAndInitSlider(pageName);
+				goAway(document.querySelector('[data-barba-namespace="details"]#tlk-category'));
+				bigImg(document.querySelector('[data-barba-namespace="details"]#tlk-category'));
 			} else {
 				setHeader(title, goBackPage);
 			}
-
-			goAway(document.querySelector('[data-barba-namespace="details"]#tlk-category'));
-			bigImg(document.querySelector('[data-barba-namespace="details"]#tlk-category'));
 
 		}
 	)
