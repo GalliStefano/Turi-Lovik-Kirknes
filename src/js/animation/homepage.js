@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import {removeOldTitle} from '../components/title';
 import {removeOldSlider} from '../components/carousel';
 
-// FADE IN/FADE OUT SLIDER COLOR DURANTE CAMBIO PAGINA
+// FADE IN/FADE OUT SLIDER + COLORI VARI DURANTE CAMBIO PAGINA
 const sliderChange = () => {
 	
 	const activeSlider = document.querySelector('main .main-round-slider:not(.show)');
@@ -20,6 +20,32 @@ const sliderChange = () => {
 
 	return tl;
 }
+
+
+// SCROLLDOWN DELLO SLIDER MENTRE RITORNO IN HP
+const sliderScrolldown = () => {
+	
+	const activeSlider = document.querySelector('main .main-round-slider:not(.show)');
+	const oldImages = gsap.utils.toArray('main .main-round-slider.show .swiper-wrapper figure');
+
+	const prevImg = activeSlider.querySelector(".swiper-slide.swiper-slide-prev figure");
+	const nextImg = activeSlider.querySelector(".swiper-slide.swiper-slide-next figure");
+	const mainImg = activeSlider.querySelector('.swiper-slide.swiper-slide-active figure');
+
+
+
+	const tl = gsap.timeline({onComplete: removeOldSlider});
+
+	tl
+		.to(oldImages, {opacity: 0, ease: "power1.in", duration: 0.4}, 0)
+
+		.from(prevImg, {y: "-85%", ease: "power2.out", scale: 0.7, opacity: 0.6, duration: 1}, 0.2)
+		.from(mainImg, {y: "-180%", rotate: "-15deg", scale: 0.7, opacity: 0.6, ease: "power2.out", duration: 1}, 0.2)
+		.from(nextImg, {y: "-140%", x: "-19%", rotate: "-11deg", scale: 0.7, opacity: 0.6, ease: "power2.out", duration: 1}, 0.2)
+
+	return tl;
+}
+
 
 // FADE IN/FADE OUT TITLE + CAMBIO BGK COLOR DURANTE SWIPE
 const changeTitlesAndBgk = (bgColor, color) => {
@@ -57,20 +83,21 @@ const hpExit = (data) => {
 	return tl;
 }
 
-// INGRESSO IN HOMEPAGE: TITLE + FOOTER 
+// INGRESSO IN HOMEPAGE: TITLE + FOOTER + ICON
 const hpEnter = (data) => {
 
 	const title = data.querySelector("article");
 	const footer = data.querySelector("footer nav");
+	const insta = data.querySelector("footer nav + a");
 
 	const tl = gsap.timeline({ defaults: {ease: "power1.inOut"} });
 
 	tl
-		.to(document.querySelector('main'), {opacity: 1, ease: "power1.inOut", duration: 0.3})
 		.from(title, {width: 0, opacity: 0.2, duration: 0.7}, 0.5)
 		.from(footer, {yPercent: 100, duration: 0.6}, 0.4)
+		.from(insta, {opacity: 0, ease: "power1.inOut", duration: 0.5}, 0.5)
 
 	return tl;
 }
 
-export {sliderChange, changeTitlesAndBgk, hpExit, hpEnter};
+export {sliderChange, sliderScrolldown, changeTitlesAndBgk, hpExit, hpEnter};

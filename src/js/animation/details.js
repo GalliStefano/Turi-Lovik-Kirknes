@@ -27,7 +27,7 @@ const bigImg = (container) => {
 		.set(document.body, {overflow: "auto"})
 		.set(document.querySelector('main'), {overflow: "auto"})
 		.set(slider, {pointerEvents: "none", transformOrigin: "left", overflow: "unset"}, 0)
-		.set([img, secImg], {visibility: 'visible'}, 0.2)
+		.set([img,secImg] , {visibility: 'visible'}, 0.2)
 
 		.to(prevImg, {y: "-25%", ease: "power1.inOut", duration: 0.5}, 0)
 		.to(nextImg, {y: "25%", ease: "power1.inOut", duration: 0.5}, 0)
@@ -38,7 +38,7 @@ const bigImg = (container) => {
 		.to(mainImg, {height: img.clientHeight, ease: "power2.out", duration: 1}, 0)
 		.to(img, {translateY: "-3%", opacity: 1, ease: "power2.out", duration: 1}, 0)
 	
-		
+		.set(secImg, {opacity: 0}, 0.1)
 		.to(secImg, {opacity: 1, y: 0, ease: "power2.out", duration: 0.6}, 0.2)
 		.to(secImg, {scaleY: 1, ease: "power2.out", duration: 1}, 0.2)
 
@@ -77,7 +77,7 @@ const goAway = (container) => {
 	return tl;
 }
 
-// SCROLL DELLA PRIMA E SECONDA IMMAGINE DELLA PAGINA DI DETTAGLIO
+// SCROLL DELLA PRIMA E SECONDA IMMAGINE NELLA PAGINA DI DETTAGLIO
 const parallaxScrollImg = (container) => {
 
 	const mainImg = document.querySelector('.main-round-slider.show');
@@ -92,7 +92,7 @@ const parallaxScrollImg = (container) => {
 	return tl;
 }
 
-// SCROLL DELLA TERZA IMMAGINE DELLA PAGINA DI DETTAGLIO
+// SCROLL DELLA TERZA IMMAGINE NELLA PAGINA DI DETTAGLIO
 const fullscreenImg = (container) => {
 	const terImg = container.querySelector('.third-img');
 
@@ -102,26 +102,29 @@ const fullscreenImg = (container) => {
 // NASCONDO IMMAGINI + UPDATE HEADER
 const detailsExit = (container) => {
 
-	const mainImg = document.querySelector('.main-round-slider.show');
-	const secImg = container.querySelector('.secondary-img');
-	const terImg = container.querySelector('.third-img');
+	const mainContent = document.querySelector('main');
+	const allImgs = [].slice.call(container.querySelectorAll('img'));
 
 	const mainLogo = document.querySelector("header ul:first-child li:last-child");
 	const back = document.querySelector("header ul:first-child li:first-child");
+	const about = document.querySelector("header ul:last-child li:first-child");
+	const productName = document.querySelector("header ul:last-child li:last-child");
 
 	const tl = gsap.timeline();
 
 	tl
-		// .set(container, {background: "red"})
-		// .set(document.querySelector('main'), {overflow: "hidden"})
-		// .to(document.querySelector('main'), {opacity: 0, ease: "power1.inOut", duration: 0.3})
-		// .set(document.body, {backgroundColor: `var(--mattone)`, overflow: "hidden"})
+		.to(back, {x: "-50%", opacity: "0", ease: "power3.out", duration: 0.6}, 0)
+		.to(mainLogo, {x: "0", ease: "power1.out", duration: 0.7}, 0)
+		.to(productName, {opacity: "0", x: `0`, ease: "power2.out", duration: 0.5}, 0)
+		.to(about, {opacity: "1", ease: "power1.inOut", duration: 0.5}, 0.1)
 
-		.to(back, {x: "-50%", opacity: "0", ease: "power3.out", duration: 0.4}, 0)
-		// .to(mainLogo, {x: "70px", ease: "power1.out", duration: 0.5}, 0)
-
-		.to(secImg, {opacity: 0, ease: "power1.inOut", duration: 0.5}, 0.1)
-		.to(terImg, {opacity: 0, ease: "power1.inOut", duration: 0.5}, 0.1)
+		.to(allImgs, {opacity: 0, ease: "power1.inOut", duration: 0.4}, 0)
+		.add(() => {
+			mainContent.scrollTo(0, 0);
+		}, 0.4)
+		.set(mainContent, {overflow: "hidden"}, 0.4)
+		.set(allImgs, {visibility: "hidden"}, 0.4)
+		.set(document.body, {backgroundColor: `var(--verde)`, color: `var(--beige)`, overflow: "hidden"}, ">")
 
 	return tl
 }

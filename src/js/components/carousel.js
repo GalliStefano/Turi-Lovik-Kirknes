@@ -1,6 +1,6 @@
 import {get} from '../utils/ajax'
 import Swiper from 'swiper/swiper-bundle';
-import {sliderChange} from '../animation/homepage';
+import {sliderChange, sliderScrolldown} from '../animation/homepage';
 import {createTitle} from '../components/title';
 
 // ARRAY CON I PARAMETRI DEGLI SLIDER
@@ -60,6 +60,11 @@ const dataCarousel = (page, type) => {
 				document.querySelector("body main").insertBefore(slider, mainSlider);
 				const hiddenSlider = new Swiper('.swiper.main-round-slider:not(.show)', params);
 				sliderChange();
+			} else if (type == "goBackHome") {
+				const mainSlider = document.querySelector('.main-round-slider.show');
+				document.querySelector("body main").insertBefore(slider, mainSlider);
+				const hiddenSlider = new Swiper('.swiper.main-round-slider:not(.show)', params);
+				sliderScrolldown();
 			} else {
 				slider.classList.add("show");
 				document.querySelector("body main").insertBefore(slider, title);

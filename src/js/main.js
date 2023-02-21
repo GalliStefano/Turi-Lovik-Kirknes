@@ -63,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				},
 				leave: data => detailsExit(data.current.container),
 				enter: data => {
-					console.log('sono dentro enter')
-					dataCarousel(data, "enter");
+					dataCarousel(data, "goBackHome");
 					hpEnter(data.next.container);
 				}
 			}
