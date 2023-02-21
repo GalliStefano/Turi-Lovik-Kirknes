@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import barba from '@barba/core';
 const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
 const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
-import {bigImg, goAway, parallaxScrollImg, fullscreenImg} from './animation/details';
+import {bigImg, goAway, parallaxScrollImg, fullscreenImg, setStartingValue,detailsExit} from './animation/details';
 
 import {hpExit, hpEnter} from './animation/homepage';
 
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 	barba.init({
-		preventRunning: true,
 		transitions: [
 			{
 				sync: true,
@@ -44,20 +43,32 @@ document.addEventListener("DOMContentLoaded", function() {
 					namespace: ['details']
 				},
 				once: data => {
-
-					console.log('dentro a once');
-					goAway(data.next.container);
-					dataDetails('enter');
-
-			},
+					setStartingValue();
+					dataDetails(data.next.container, 'enter');
+				},
 				leave: data => {
 					dataDetails();
 					goAway(data.current.container)
 				},
-				
-				
 				enter: data => bigImg(data.next.container)
 			},
+			{
+				sync: true,
+				name: 'back to hp',
+				from: {
+					namespace: ['details']
+				},
+				to: {
+					namespace: ['jewellery']
+				},
+				leave: data => detailsExit(data.current.container),
+				enter: data => {
+					console.log('sono dentro enter')
+					dataCarousel(data, "enter");
+					hpEnter(data.next.container);
+				}
+			}
+
 	],
 	views: [
 		{

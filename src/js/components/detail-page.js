@@ -2,9 +2,17 @@ import gsap from 'gsap';
 import {get} from '../utils/ajax'
 import {getParameterByName} from '../utils/getParams';
 import {goAway, bigImg} from "../animation/details";
-import {dataCarousel, updateAndInitSlider} from "../components/carousel";
+import {updateAndInitSlider} from "../components/carousel";
 
 
+// IMPOSTO TESTI E LINK DELL'HEADER 
+const setHeader = (name, url) => {
+	const backBtn = document.querySelector('header ul:first-of-type li a');
+	const pageName = document.querySelector('header ul:nth-of-type(2) li:last-of-type a');
+
+	backBtn.href = `/${url}.html`;
+	pageName.innerText = name;
+}
 
 // INSERISCO LE IMMAGINI CORRETTE
 const populateImg = () => {
@@ -17,23 +25,12 @@ const populateImg = () => {
 
 }
 
-// CAMBIO I VALORI DENTRO L'HEADER 
-const setHeader = (name, url) => {
-	const backBtn = document.querySelector('header ul:first-of-type li a');
-	const pageName = document.querySelector('header ul:nth-of-type(2) li:last-of-type a');
-
-	backBtn.href = `/${url}.html`;
-	pageName.innerText = name;
-}
-
 // PERSONALIZZO LA PAGINA DI DETTAGLIO
-const dataDetails = (type) => {
+const dataDetails = (container, type) => {
 	const pageName = getParameterByName('page');
-	const allImg = gsap.utils.toArray('[data-barba-namespace="details"]#tlk-category img');
-
-	console.log('parte data details');
-
+	const mainImg = document.querySelector('.main-round-slider.show .swiper-slide:first-of-type img')
 	let goBackPage, bgk, color, title = "";
+	if (type) gsap.set(mainImg, {opacity: 0});
 
 	get('./data/slider.json').then(
 		(response) => {
@@ -51,17 +48,11 @@ const dataDetails = (type) => {
 				})
 			}
 
-			// allImg.forEach((img, i) => {
-			// 	img.src = `/images/${pageName}-img${i + 2}.webp`
-			// })
-
-			if (type == 'enter') {
-				setHeader(title, goBackPage);
+			setHeader(title, goBackPage);
+			if (type) {
 				updateAndInitSlider(pageName);
-				goAway(document.querySelector('[data-barba-namespace="details"]#tlk-category'));
-				bigImg(document.querySelector('[data-barba-namespace="details"]#tlk-category'));
-			} else {
-				setHeader(title, goBackPage);
+				goAway(container);
+				bigImg(container);
 			}
 
 		}

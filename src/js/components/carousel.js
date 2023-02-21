@@ -85,19 +85,15 @@ const removeOldSlider = () => {
 	createTitle();
 }
 
-
 // POPOLO SLIDER IN PAGINA DI DETTAGLIO E INIZIALIZZO
 const updateAndInitSlider = (brand) => {
-
-	console.log('sono dentro a update slider');
 
 	const mainImg = document.querySelector('.main-round-slider.show .swiper-wrapper .swiper-slide:first-of-type figure img');
 
 	mainImg.src = `/images/${brand}-main.webp`;
 
-	console.log(mainImg);
-
 	const mainSlider = new Swiper('.swiper.main-round-slider.show', params);
+	gsap.from('.main-round-slider.show', {opacity: 0, duration: 0.7});
 
 }
 

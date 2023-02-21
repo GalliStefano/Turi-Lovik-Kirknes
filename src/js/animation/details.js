@@ -2,6 +2,13 @@ import gsap from 'gsap';
 import {populateImg} from '../components/detail-page'
 
 
+// NASCONDO L'IMMAGINE PRINCIPALE SE CARICO COME PRIMA PAGINA LA PAGINA DI DETTAGLIO
+const setStartingValue = () => {
+	const mainImg = document.querySelector('.main-round-slider .swiper-slide:first-of-type figure img');
+
+	gsap.set(mainImg, {visibility: 'hidden'});
+}
+
 // TRASFORMO LO SLIDER IN UNA SOLA IMG
 const bigImg = (container) => {
 
@@ -12,7 +19,6 @@ const bigImg = (container) => {
 	const mainImg = slider.querySelector('.swiper-slide.swiper-slide-active');
 	const imgContainer = mainImg.querySelector("figure");
 	const img = imgContainer.querySelector("img");
-
 	const secImg = container.querySelector('.secondary-img');
 
 	const tl = gsap.timeline({onStart: populateImg});
@@ -21,6 +27,8 @@ const bigImg = (container) => {
 		.set(document.body, {overflow: "auto"})
 		.set(document.querySelector('main'), {overflow: "auto"})
 		.set(slider, {pointerEvents: "none", transformOrigin: "left", overflow: "unset"}, 0)
+		.set([img, secImg], {visibility: 'visible'}, 0.2)
+
 		.to(prevImg, {y: "-25%", ease: "power1.inOut", duration: 0.5}, 0)
 		.to(nextImg, {y: "25%", ease: "power1.inOut", duration: 0.5}, 0)
 		.set(slides, {opacity: 0}, 0.5)
@@ -28,17 +36,16 @@ const bigImg = (container) => {
 		.to(slider, {scale: 1.1, ease: "power2.out", duration: 1}, 0)
 		.to(imgContainer, {height: img.clientHeight, y: "-5vh", borderRadius: "0px",ease: "power2.out", duration: 1}, 0)
 		.to(mainImg, {height: img.clientHeight, ease: "power2.out", duration: 1}, 0)
-		.to(img, {translateY: "-3%", ease: "power2.out", duration: 1}, 0)
+		.to(img, {translateY: "-3%", opacity: 1, ease: "power2.out", duration: 1}, 0)
 	
+		
 		.to(secImg, {opacity: 1, y: 0, ease: "power2.out", duration: 0.6}, 0.2)
 		.to(secImg, {scaleY: 1, ease: "power2.out", duration: 1}, 0.2)
 
 	return tl;
 }
 
-
 // NASCONDO ELEMENTI DA HP E MOSTRO HEADER PAGINA DI DETTAGLIO
-
 const goAway = (container) => {
 
 	const navbar = document.querySelector("footer nav");
@@ -70,7 +77,7 @@ const goAway = (container) => {
 	return tl;
 }
 
-
+// SCROLL DELLA PRIMA E SECONDA IMMAGINE DELLA PAGINA DI DETTAGLIO
 const parallaxScrollImg = (container) => {
 
 	const mainImg = document.querySelector('.main-round-slider.show');
@@ -85,12 +92,40 @@ const parallaxScrollImg = (container) => {
 	return tl;
 }
 
-
+// SCROLL DELLA TERZA IMMAGINE DELLA PAGINA DI DETTAGLIO
 const fullscreenImg = (container) => {
 	const terImg = container.querySelector('.third-img');
 
 	return gsap.to(terImg, {scale: 1, ease: "none"}, 0);
 }
 
+// NASCONDO IMMAGINI + UPDATE HEADER
+const detailsExit = (container) => {
 
-export {bigImg, goAway, parallaxScrollImg, fullscreenImg};
+	const mainImg = document.querySelector('.main-round-slider.show');
+	const secImg = container.querySelector('.secondary-img');
+	const terImg = container.querySelector('.third-img');
+
+	const mainLogo = document.querySelector("header ul:first-child li:last-child");
+	const back = document.querySelector("header ul:first-child li:first-child");
+
+	const tl = gsap.timeline();
+
+	tl
+		// .set(container, {background: "red"})
+		// .set(document.querySelector('main'), {overflow: "hidden"})
+		// .to(document.querySelector('main'), {opacity: 0, ease: "power1.inOut", duration: 0.3})
+		// .set(document.body, {backgroundColor: `var(--mattone)`, overflow: "hidden"})
+
+		.to(back, {x: "-50%", opacity: "0", ease: "power3.out", duration: 0.4}, 0)
+		// .to(mainLogo, {x: "70px", ease: "power1.out", duration: 0.5}, 0)
+
+		.to(secImg, {opacity: 0, ease: "power1.inOut", duration: 0.5}, 0.1)
+		.to(terImg, {opacity: 0, ease: "power1.inOut", duration: 0.5}, 0.1)
+
+	return tl
+}
+
+
+
+export {bigImg, goAway, parallaxScrollImg, fullscreenImg, setStartingValue, detailsExit};

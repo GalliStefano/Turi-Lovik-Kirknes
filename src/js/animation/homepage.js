@@ -66,6 +66,7 @@ const hpEnter = (data) => {
 	const tl = gsap.timeline({ defaults: {ease: "power1.inOut"} });
 
 	tl
+		.to(document.querySelector('main'), {opacity: 1, ease: "power1.inOut", duration: 0.3})
 		.from(title, {width: 0, opacity: 0.2, duration: 0.7}, 0.5)
 		.from(footer, {yPercent: 100, duration: 0.6}, 0.4)
 
