@@ -34,14 +34,14 @@ const sliderScrolldown = () => {
 
 
 
-	const tl = gsap.timeline({onComplete: removeOldSlider});
+	const tl = gsap.timeline({ onComplete: removeOldSlider, defaults: {ease: "circ.inOut", duration: 1} });
 
 	tl
 		.to(oldImages, {opacity: 0, ease: "power1.in", duration: 0.4}, 0)
 
-		.from(prevImg, {y: "-85%", ease: "power2.out", scale: 0.7, opacity: 0.6, duration: 1}, 0.2)
-		.from(mainImg, {y: "-180%", rotate: "-15deg", scale: 0.7, opacity: 0.6, ease: "power2.out", duration: 1}, 0.2)
-		.from(nextImg, {y: "-140%", x: "-19%", rotate: "-11deg", scale: 0.7, opacity: 0.6, ease: "power2.out", duration: 1}, 0.2)
+		.from(prevImg, {y: "-85%", scale: 0.7, opacity: 0.6, }, 0.2)
+		.from(mainImg, {y: "-180%", rotate: "-15deg", scale: 0.7, opacity: 0.6}, 0.2)
+		.from(nextImg, {y: "-140%", x: "-19%", rotate: "-11deg", scale: 0.7, opacity: 0.6}, 0.2)
 
 	return tl;
 }
