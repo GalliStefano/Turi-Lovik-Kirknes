@@ -7,7 +7,10 @@ export const initFooter = () => {
 	if (!pageUrl) return multitabLinks[0].classList.add('active');
 	
 	multitabLinks.forEach(el => {
-		if (el.href.split("/").pop() == pageUrl) el.classList.add('active');
+		if (el.href.split("/").pop() == pageUrl) {
+			el.classList.add('active');
+			if (pageUrl != "fashion.html") el.style.color = 'var(--verde)';
+		}
 	});
 
 }

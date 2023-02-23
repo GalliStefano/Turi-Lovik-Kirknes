@@ -102,6 +102,8 @@ const fullscreenImg = (container) => {
 // NASCONDO IMMAGINI + UPDATE HEADER
 const detailsExit = (container) => {
 
+	const pageUrl = document.querySelector('header ul li a').href;
+	const bgColor = pageUrl.includes("fashion") ? "mattone" : "verde";
 	const mainContent = document.querySelector('main');
 	const allImgs = [].slice.call(container.querySelectorAll('img'));
 
@@ -119,16 +121,16 @@ const detailsExit = (container) => {
 		.to(about, {opacity: "1", ease: "power1.inOut", duration: 0.5}, 0.1)
 
 		.to(allImgs, {opacity: 0, ease: "power1.inOut", duration: 0.4}, 0)
+		.set(allImgs, {visibility: "hidden", display: "none"}, ">")
 		.add(() => {
 			mainContent.scrollTo(0, 0);
 		}, 0.4)
 		.set(mainContent, {overflow: "hidden"}, 0.4)
-		.set(allImgs, {visibility: "hidden"}, 0.4)
-		.set(document.body, {backgroundColor: `var(--verde)`, color: `var(--beige)`, overflow: "hidden"}, ">")
+		
+		.set(document.body, {backgroundColor: `var(--${bgColor})`, color: `var(--beige)`, overflow: "hidden"}, ">")
 
 	return tl
 }
-
 
 
 export {bigImg, goAway, parallaxScrollImg, fullscreenImg, setStartingValue, detailsExit};

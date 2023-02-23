@@ -15,5 +15,6 @@ $Inter: 'Inter', Helvetica, Arial, sans-serif;
 	--viola: #780a3c;
 	--nero: #333;
 
-	--main-color: var(--beige);
+	--beige-filter: brightness(0) saturate(100%) invert(94%) sepia(10%) saturate(628%) hue-rotate(341deg) brightness(92%) contrast(88%);
+	--marrone-filter: brightness(0) saturate(100%) invert(26%) sepia(6%) saturate(1723%) hue-rotate(314deg) brightness(90%) contrast(91%);
 }

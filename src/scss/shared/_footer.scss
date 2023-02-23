@@ -15,9 +15,11 @@ footer {
 			display: inline-block;
 			padding: 8px 12px;
 			border-radius: 3px;
+			transition: background 400ms ease-in-out, color 400ms ease-in-out;
 			&.active {
 				background: var(--beige);
 				color: var(--mattone);
+				pointer-events: none;
 			}
 		}
 	}

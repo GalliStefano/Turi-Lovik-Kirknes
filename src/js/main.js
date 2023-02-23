@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					namespace: ['details']
 				},
 				to: {
-					namespace: ['jewellery']
+					namespace: ['jewellery', 'fashion']
 				},
 				leave: data => detailsExit(data.current.container),
 				enter: data => {
