@@ -42,7 +42,8 @@ header {
 		}
 		li {
 			a {
-				color: var(--main-color);
+				color: var(--beige);
+				@include fluid-type(1024px, 1920px, 500, 12px, 25px, $Inter);
 				display: inline-block;
 			}
 		}

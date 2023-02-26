@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import barba from '@barba/core';
 const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
 const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
-import {bigImg, goAway, parallaxScrollImg, fullscreenImg, setStartingValue,detailsExit} from './animation/details';
+import {sliderToMainImg, detailsEnter, parallaxScrollImgs, fullscreenImg, setStartingValue,detailsExit} from './animation/details';
 
 import {hpExit, hpEnter} from './animation/homepage';
 
@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function() {
 				},
 				leave: data => {
 					dataDetails();
-					goAway(data.current.container)
+					detailsEnter(data.current.container)
 				},
-				enter: data => bigImg(data.next.container)
+				enter: data => sliderToMainImg(data.next.container)
 			},
 			{
 				sync: true,
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			afterEnter(data) {
 
 				ScrollTrigger.create({
-					animation: parallaxScrollImg(data.next.container),
+					animation: parallaxScrollImgs(data.next.container),
 					scroller: "body main",
 					trigger: "main #tlk-category .secondary-img",
 					start: 1,

@@ -10,7 +10,7 @@ const setStartingValue = () => {
 }
 
 // TRASFORMO LO SLIDER IN UNA SOLA IMG
-const bigImg = (container) => {
+const sliderToMainImg = (container) => {
 
 	const slider = document.querySelector('.main-round-slider.show');
 	const slides = [].slice.call(slider.querySelectorAll(".swiper-slide:not(.swiper-slide-active) figure img"));
@@ -45,8 +45,26 @@ const bigImg = (container) => {
 	return tl;
 }
 
+// IMPOSTO COLORE DI BGK E COLORI NELL'HEADER
+const setColorHeader = (bgColor, color) => {
+
+	const activeVoice = document.querySelector('footer nav a.active');
+	const header = gsap.utils.toArray('header ul li a');
+	const mainLogo = document.querySelector('header ul:first-of-type li a img')
+
+	const tl = gsap.timeline({defaults: { overwrite: "auto" }});
+
+	tl
+		.set(document.body, {backgroundColor: `var(--${bgColor})`, color: `var(--${color})` }, 0)
+		.set(activeVoice, {color: `var(--${bgColor})`, backgroundColor: `var(--${color})` }, 0)
+		.to(header, {color: `var(--${color})`, ease: "power1.inOut", duration: 0.4}, 0)
+		.set(mainLogo, {filter: `var(--${color}-filter)`}, 0)
+
+	return tl;
+}
+
 // NASCONDO ELEMENTI DA HP E MOSTRO HEADER PAGINA DI DETTAGLIO
-const goAway = (container) => {
+const detailsEnter = (container) => {
 
 	const navbar = document.querySelector("footer nav");
 	const insta = document.querySelector("footer nav + a");
@@ -78,7 +96,7 @@ const goAway = (container) => {
 }
 
 // SCROLL DELLA PRIMA E SECONDA IMMAGINE NELLA PAGINA DI DETTAGLIO
-const parallaxScrollImg = (container) => {
+const parallaxScrollImgs = (container) => {
 
 	const mainImg = document.querySelector('.main-round-slider.show');
 	const secImg = container.querySelector('.secondary-img');
@@ -133,4 +151,4 @@ const detailsExit = (container) => {
 }
 
 
-export {bigImg, goAway, parallaxScrollImg, fullscreenImg, setStartingValue, detailsExit};
+export {sliderToMainImg, detailsEnter, parallaxScrollImgs, fullscreenImg, setStartingValue, detailsExit, setColorHeader};

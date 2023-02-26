@@ -13,14 +13,19 @@ footer {
 		a {
 			color: inherit;
 			display: inline-block;
-			padding: 8px 12px;
-			border-radius: 3px;
+			padding: 6px 11px;
+			border-radius: 8px;
 			transition: background 400ms ease-in-out, color 400ms ease-in-out;
+			@include fluid-type(1024px, 1920px, 500, 12px, 25px, $Inter);
 			&.active {
 				background: var(--beige);
 				color: var(--mattone);
 				pointer-events: none;
 			}
 		}
+	}
+	img {
+		width: 1.8vw;
+    height: auto;
 	}
 }

@@ -1,9 +1,8 @@
 import gsap from 'gsap';
 import {get} from '../utils/ajax'
 import {getParameterByName} from '../utils/getParams';
-import {goAway, bigImg} from "../animation/details";
+import {detailsEnter, sliderToMainImg, setColorHeader} from "../animation/details";
 import {updateAndInitSlider} from "../components/carousel";
-
 
 // IMPOSTO TESTI E LINK DELL'HEADER 
 const setHeader = (name, url) => {
@@ -39,8 +38,7 @@ const dataDetails = (container, type) => {
 				response[key].forEach(obj => {
 					if (obj.page == pageName) {
 						goBackPage = key;
-						bgk = obj.bgColor;
-						gsap.set(document.body, {backgroundColor: `var(--${bgk})`}, 0)
+						bgk = obj.bgColor,
 						color = obj.color ? obj.color : 'beige';
 						title = obj.caption.split(" - ")[1];
 						title = title.replace('<br>', ' ');
@@ -50,11 +48,11 @@ const dataDetails = (container, type) => {
 
 			setHeader(title, goBackPage);
 			if (type) {
+				setColorHeader(bgk, color);
 				updateAndInitSlider(pageName);
-				goAway(container);
-				bigImg(container);
+				detailsEnter(container);
+				sliderToMainImg(container);
 			}
-
 		}
 	)
 }

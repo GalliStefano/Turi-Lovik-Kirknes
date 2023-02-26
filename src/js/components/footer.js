@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 
+// PER OGNI PAGINA SELEZIONO LA VOCE DA ATTIVARE
 export const initFooter = () => {
 	const multitabLinks = gsap.utils.toArray('footer nav a');
 	const pageUrl = window.location.href.split("/").pop();
@@ -12,9 +13,5 @@ export const initFooter = () => {
 			if (pageUrl != "fashion.html") el.style.color = 'var(--verde)';
 		}
 	});
-
-}
-
-const updateColorFooter = (bgColor, ) => {
 
 }
