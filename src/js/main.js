@@ -3,9 +3,7 @@ import barba from '@barba/core';
 const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
 const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
 import {sliderToMainImg, detailsEnter, parallaxScrollImgs, fullscreenImg, setStartingValue,detailsExit} from './animation/details';
-
 import {hpExit, hpEnter} from './animation/homepage';
-
 import {dataCarousel} from './components/carousel';
 import {dataDetails} from './components/detail-page';
 import {initFooter} from './components/footer';
