@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import {populateImg} from '../components/detail-page'
 
 
@@ -21,7 +21,7 @@ const sliderToMainImg = (container) => {
 	const img = imgContainer.querySelector("img");
 	const secImg = container.querySelector('.secondary-img');
 
-	const tl = gsap.timeline({onStart: populateImg});
+	const tl = gsap.timeline({onStart: populateImg}); 
 
 	tl
 		.set(document.body, {overflow: "auto"})

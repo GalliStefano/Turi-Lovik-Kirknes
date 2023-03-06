@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import Swiper from 'swiper/swiper-bundle';
 import {changeTitlesAndBgk} from '../animation/homepage';
 

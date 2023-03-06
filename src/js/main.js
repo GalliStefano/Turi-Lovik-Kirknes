@@ -1,71 +1,64 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import barba from '@barba/core';
-const { CSSRulePlugin } = require("gsap/dist/CSSRulePlugin");
-const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
-import {sliderToMainImg, detailsEnter, parallaxScrollImgs, fullscreenImg, setStartingValue,detailsExit} from './animation/details';
-import {hpExit, hpEnter} from './animation/homepage';
-import {dataCarousel} from './components/carousel';
-import {dataDetails} from './components/detail-page';
-import {initFooter} from './components/footer';
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { CSSRulePlugin } from "gsap/dist/CSSRulePlugin";
+import { sliderToMainImg, detailsEnter, parallaxScrollImgs, fullscreenImg, setStartingValue,detailsExit } from './animation/details';
+import { hpExit, hpEnter } from './animation/homepage';
+import { dataCarousel } from './components/carousel';
+import { dataDetails } from './components/detail-page';
+import { initFooter } from './components/footer';
 
-gsap.install(window);
-gsap.registerPlugin(CSSRulePlugin);
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CSSRulePlugin);
 
-document.addEventListener("DOMContentLoaded", function() {
-	// JS MAIN - Start
-
-
-	barba.init({
-		transitions: [
-			{
-				sync: true,
-				name: 'hp change',
-				to: {
-					namespace: ['jewellery', 'fashion']
-				},
-				once: data => {
-					dataCarousel(data);
-					hpEnter(data.next.container);
-				},
-				leave: data => hpExit(data.current.container),
-				enter: data => {
-					dataCarousel(data, "enter");
-					hpEnter(data.next.container);
-				}
+barba.init({
+	transitions: [
+		{
+			sync: true, 
+			name: 'hp change',
+			to: {
+				namespace: ['jewellery', 'fashion']
 			},
-			{
-				sync: true,
-				name: 'go to detail',
-				to: {
-					namespace: ['details']
-				},
-				once: data => {
-					setStartingValue();
-					dataDetails(data.next.container, 'enter');
-				},
-				leave: data => {
-					dataDetails();
-					detailsEnter(data.current.container)
-				},
-				enter: data => sliderToMainImg(data.next.container)
+			once: data => {
+				dataCarousel(data);
+				hpEnter(data.next.container);
 			},
-			{
-				sync: true,
-				name: 'back to hp',
-				from: {
-					namespace: ['details']
-				},
-				to: {
-					namespace: ['jewellery', 'fashion']
-				},
-				leave: data => detailsExit(data.current.container),
-				enter: data => {
-					dataCarousel(data, "goBackHome");
-					hpEnter(data.next.container);
-				}
+			leave: data => hpExit(data.current.container),
+			enter: data => {
+				dataCarousel(data, "enter");
+				hpEnter(data.next.container);
 			}
-
+		},
+		{
+			sync: true,
+			name: 'go to detail',
+			to: {
+				namespace: ['details']
+			},
+			once: data => {
+				setStartingValue();
+				dataDetails(data.next.container, 'enter');
+			},
+			leave: data => {
+				dataDetails();
+				detailsEnter(data.current.container)
+			},
+			enter: data => sliderToMainImg(data.next.container)
+		},
+		{
+			sync: true,
+			name: 'back to hp',
+			from: {
+				namespace: ['details']
+			},
+			to: {
+				namespace: ['jewellery', 'fashion']
+			},
+			leave: data => detailsExit(data.current.container),
+			enter: data => {
+				dataCarousel(data, "goBackHome");
+				hpEnter(data.next.container);
+			}
+		}
 	],
 	views: [
 		{
@@ -104,8 +97,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		}
 	]
-});
-
-
-	// JS MAIN - End
 });

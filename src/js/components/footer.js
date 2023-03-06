@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 
 // PER OGNI PAGINA SELEZIONO LA VOCE DA ATTIVARE
 export const initFooter = () => {

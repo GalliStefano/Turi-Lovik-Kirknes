@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import {removeOldTitle} from '../components/title';
 import {removeOldSlider} from '../components/carousel';
 
@@ -99,8 +99,8 @@ const hpEnter = (data) => {
 	tl
 		.from(title, {width: 0, opacity: 0.2, duration: 0.7}, 0.5)
 		.from(footer, {yPercent: 100, duration: 0.6}, 0.4)
-		.from(insta, {opacity: 0, ease: "power1.inOut", duration: 0.5}, 0.5)
-		.to(header, {color: `var(--beige)`, ease: "power1.inOut", duration: 0.4}, 0.5)
+		.from(insta, {opacity: 0, duration: 0.5}, 0.5)
+		.to(header, {color: `var(--beige)`, duration: 0.4}, 0.5)
 		.set(mainLogo, {filter: `var(--beige-filter)`}, 0.5)
 
 	return tl;

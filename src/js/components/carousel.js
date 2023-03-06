@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import {get} from '../utils/ajax'
 import Swiper from 'swiper/swiper-bundle';
 import {sliderChange, sliderScrolldown} from '../animation/homepage';

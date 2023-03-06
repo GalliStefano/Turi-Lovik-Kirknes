@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import {get} from '../utils/ajax'
 import {getParameterByName} from '../utils/getParams';
 import {detailsEnter, sliderToMainImg, setColorHeader} from "../animation/details";
